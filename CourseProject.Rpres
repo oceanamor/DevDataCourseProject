@@ -1,0 +1,89 @@
+America Needs to Burn More and Eat Less - Shiny Calorie App - Step One
+========================================================
+author: Darren Seaman
+date: 06/20/2015
+transition: rotate
+transition-speed: slow
+height: 900
+width:1200
+
+How to Measure Caloric Needs (Mifflin St-Jeor)
+========================================================
+<small>BMR (Basal Metabolic Rate) is calculated using the following formula:
+
+Men - 
+10 x weight (kg) + 6.25 x height (cm) - 5 x age (y) + 5 * Activity Level Factor
+
+Women - 
+10 x weight (kg) + 6.25 x height (cm) - 5 x age (y) - 161 * Activity Level Factor
+
+Also included in the equation is an activity factor.
+- Sedentary - Nothing beyond necessary daily activities results in a factor of 1.2.
+- Light - work at a computer all day/light exercise 1-3 days/week results in a factor of 1.375.
+- Medium - student walking every where/moderate exercise 3-5 days/week results in a factor of 1.550.
+- Heavy - work in construction or warehouse/hard exercise 6-7 days/week results in a factor of 1.725
+- Extreme - very physical job/training for a triathlon results in a factor of 1.900</small>
+
+
+Why This Equation Matters - The Obesity Epidemic
+===
+
+- Obesity is an epidemic in the United States.
+
+- The obesity rate in adults has more than doubled over the past 5 decades. 
+
+- There are several conditions related to obesity such as heart disease, 
+stroke, and diabetes that could be prevented through better diet.
+
+- The medical cost of obesity is nearing $200 billion dollars a year.
+
+- The first step to slow this trend is to understand individual caloric needs
+
+- The graph on the next slide shows the results of running the rcode below</small>
+
+```{r, echo=FALSE, results='asis'}
+options(viewer=NULL)
+suppressPackageStartupMessages(library(googleVis))
+states <- c('Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia',
+            'Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland',
+            'Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire',
+            'New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania',
+            'Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington',
+            'West Virginia','Wisconsin','Wyoming')
+obrates <- c(32.4,28.4,26.8,34.6,24.1,21.3,25,31.1,22.9,26.4,30.3,21.8,29.6,29.4,31.8,31.3,30,33.2,33.1,28.9,28.3,23.6,
+             31.5,25.5,35.1,30.4,24.6,29.6,26.2,26.7,26.3,26.4,25.4,29.4,31,30.4,32.5,26.5,30,27.3,31.7,29.9,33.7,30.9,
+             24.1,24.7,27.2,27.2,35.1,29.8,27.8)
+obdata <- data.frame(cbind(states,obrates))
+```
+
+```{r, echo=TRUE, results='hide', evaluate = FALSE}
+G <- gvisGeoChart(obdata, locationvar="states",
+                  colorvar="obrates",options=list(region="US", displayMode="regions", 
+                                                   resolution="provinces",width=900, height=700)
+                 )
+print(G,'chart')
+
+```
+The Current Obesity Level by State
+===
+transition: linear
+<small>The darker the state the higher the percentage of adult obesity. If you hover over the chart you can see the actual values for each state.</small>
+```{r, echo=FALSE, results='asis'}
+G <- gvisGeoChart(obdata, locationvar="states",
+                  colorvar="obrates",options=list(region="US", displayMode="regions", 
+                                                   resolution="provinces",width=900, height=700)
+                 )
+print(G,'chart')
+
+```
+
+Why This Calculation Why This App
+===
+transition: linear
+There are other caloric need calculations such as the Harrison-Benedict and the Penn State Equation, but this equation has been found to be the most accurate by the American Dietetic Association/Academy of Nutrition and Dietetics.
+
+To help decrease the levels of obesity in the US (and globally) please take the first step and determine what your individual calorie intake should be (and maybe your family member's too). Go to the app and enter your parameters and see what the result is. It will take less than 10 seconds and may help you save a lifetime of health issues.
+
+If you want to lose 1 pound a week subtract 500 calories from the number calculated and that should be your target intake.
+
+Up Next - Step Two - gaining an understanding of how many calories you are eating which is a much more complicated app.
